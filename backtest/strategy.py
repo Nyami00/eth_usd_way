@@ -56,6 +56,12 @@ def compute_indicators(bars, params):
     else:
         out["htf_ema"] = None
 
+    # v6: daily-EMA slope (needed when ema_slope_filter is on).
+    if params.get("ema_slope_filter"):
+        out["htf_ema_slope"] = ind.daily_ema_slope_ffill(bars, params.get("htf_ema_n", 50))
+    else:
+        out["htf_ema_slope"] = None
+
     # F2: TTM momentum oscillator = linreg endpoint of (close - midline),
     # midline = ((HH_m + LL_m)/2 + EMA_m)/2 over an m-bar window.
     if params.get("momentum_filter"):
