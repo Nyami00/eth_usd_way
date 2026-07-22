@@ -126,11 +126,18 @@ def generate_signals(bars, params, ind_data=None):
     volume_filter = bool(params.get("volume_filter"))
     sma_vol = ind_data.get("sma_vol")
     vol_mult = params.get("vol_mult", 1.3)
+    # confirm_bars: 0 = emit on the breakout bar (fill next bar). 1 = require the
+    # bar after the breakout to also close beyond the same-direction band
+    # (recomputed at that bar); on confirmation emit there (engine fills at the
+    # bar after). The setup is consumed on the breakout bar either way.
+    confirm_bars = int(params.get("confirm_bars", 0))
 
     prev_squeeze = False
     run_len = 0
     # active setup: dict with release_bar and consumed flag, or None
     setup = None
+    # pending confirmation (confirm_bars>=1): {"dir":.., "confirm_at": bar index}
+    pending = None
     # episode tracking (v4b): the most recent qualifying squeeze-release bar
     # as of bar i (a new qualifying release replaces the episode).
     episode_release = [None] * n
@@ -156,7 +163,20 @@ def generate_signals(bars, params, ind_data=None):
             setup = None
 
         sig = None
-        if setup is not None and not setup["consumed"] and not sq:
+
+        # (1) Resolve a pending confirmation from the previous breakout bar.
+        if pending is not None and pending["confirm_at"] == i:
+            up_c = bb_up[i]
+            lo_c = bb_lo[i]
+            cc = bars[i].close
+            if pending["dir"] == "long" and up_c is not None and cc > up_c:
+                sig = "long"
+            elif pending["dir"] == "short" and lo_c is not None and cc < lo_c:
+                sig = "short"
+            pending = None  # consumed whether or not confirmation succeeded
+
+        # (2) Otherwise detect a fresh breakout on this bar.
+        if sig is None and pending is None and setup is not None and not setup["consumed"] and not sq:
             c = bars[i].close
             up = bb_up[i]
             lo = bb_lo[i]
@@ -191,14 +211,22 @@ def generate_signals(bars, params, ind_data=None):
                 else:
                     vol_ok = True
 
-                if allow_long and c > up and trend_ok_long and htf_ok_long and mom_ok_long and vol_ok:
-                    sig = "long"
-                    setup["consumed"] = True
-                elif (
+                long_break = allow_long and c > up and trend_ok_long and htf_ok_long and mom_ok_long and vol_ok
+                short_break = (
                     allow_short and c < lo and trend_ok_short and htf_ok_short and mom_ok_short and vol_ok
-                ):
-                    sig = "short"
+                )
+                if long_break:
                     setup["consumed"] = True
+                    if confirm_bars >= 1:
+                        pending = {"dir": "long", "confirm_at": i + 1}
+                    else:
+                        sig = "long"
+                elif short_break:
+                    setup["consumed"] = True
+                    if confirm_bars >= 1:
+                        pending = {"dir": "short", "confirm_at": i + 1}
+                    else:
+                        sig = "short"
 
         signals[i] = sig
         prev_squeeze = sq
