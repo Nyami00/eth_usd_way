@@ -32,10 +32,15 @@ def run_backtest(
     eval_start,
     episode_release=None,
     pullback_short=None,
+    entry_end=None,
 ):
     """Run the simulation over the whole series.
 
     Entries whose fill bar timestamp is before ``eval_start`` are suppressed.
+    If ``entry_end`` is given, entries whose fill bar timestamp is after it are
+    also suppressed, and any position still open at the last bar with
+    ts <= entry_end is force-closed there (reason "window_end") so nothing
+    bleeds past the window.
 
     Returns dict with:
       trades         list of trade records (dicts)
@@ -57,6 +62,15 @@ def run_backtest(
     equity = []
     trades = []
     in_pos_flags = [False] * n
+
+    # Last bar index within the entry window (for the window-end force-close).
+    window_end_idx = None
+    if entry_end is not None:
+        for i in range(n):
+            if bars[i].ts <= entry_end:
+                window_end_idx = i
+            else:
+                break
 
     cash = INITIAL_CAPITAL
     eq = INITIAL_CAPITAL
@@ -85,7 +99,8 @@ def run_backtest(
             return False
         q = (eq * 0.03) / sd
         cap = eq * 5.0 / ef  # 5x notional leverage cap
-        if q > cap:
+        leverage_capped = q > cap
+        if leverage_capped:
             q = cap
         if q <= 0:
             return False
@@ -109,6 +124,7 @@ def run_backtest(
             "scaled_out": False,
             "is_reentry": is_reentry,
             "time_stop_pending": False,
+            "leverage_capped": leverage_capped,
         }
         return True
 
@@ -164,7 +180,8 @@ def run_backtest(
                 "scaled_out": P["scaled_out"],
                 "exit_reason": reason,
                 "is_reentry": P["is_reentry"],
-                "forced_close": reason == "end_of_data",
+                "leverage_capped": P["leverage_capped"],
+                "forced_close": reason in ("end_of_data", "window_end"),
             }
         )
         P = None
@@ -181,7 +198,12 @@ def run_backtest(
                 episode_reentries = 0
 
         # 1. Entry (if flat): initial breakout, else pull-back re-entry (v4b).
-        if P is None and c > 0 and bar.ts >= eval_start:
+        if (
+            P is None
+            and c > 0
+            and bar.ts >= eval_start
+            and (entry_end is None or bar.ts <= entry_end)
+        ):
             t = c - 1
             entry_dir = None
             is_re = False
@@ -266,6 +288,12 @@ def run_backtest(
                             ur = (P["entry_fill"] - bar.close) / P["stop_dist"]
                         if ur < 0:
                             P["time_stop_pending"] = True
+
+        # 2e. Window-end force-close: nothing bleeds past entry_end.
+        if P is not None and window_end_idx is not None and c == window_end_idx:
+            side = P["side"]
+            xf = bar.close * (1.0 - slip) if side == "long" else bar.close * (1.0 + slip)
+            close_remainder(c, xf, "window_end")
 
         # 3. Mark-to-market equity at this bar's close.
         if P is not None:

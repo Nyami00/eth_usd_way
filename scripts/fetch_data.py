@@ -25,7 +25,20 @@ from datetime import datetime, timedelta, timezone
 # Configuration
 # --------------------------------------------------------------------------- #
 
-START = datetime(2025, 10, 1, 0, 0, 0, tzinfo=timezone.utc)
+# Per-granularity fetch start. 1h and 1d are extended back to 2020-01-01 for
+# the v5 out-of-sample validation; 15m keeps its 2025-10-01 start (no free
+# multi-year minute source, and 15m is only used for sensitivity analysis).
+START_2020 = datetime(2020, 1, 1, 0, 0, 0, tzinfo=timezone.utc)
+START_15M = datetime(2025, 10, 1, 0, 0, 0, tzinfo=timezone.utc)
+
+GRAN_START = {
+    900: START_15M,    # 15 minutes
+    3600: START_2020,  # 1 hour
+    86400: START_2020,  # 1 day
+}
+
+# Overall earliest start, used only for the combined-range line in reports.
+RANGE_START = START_2020
 
 # Granularity in seconds -> output filename
 GRANULARITIES = {
@@ -375,12 +388,13 @@ def acquire_granularity(granularity, end, keep_cc_daily=None):
     raw CryptoCompare daily rows are stored under key "rows" for cross-checks.
     """
     label = GRAN_LABEL[granularity]
+    start = GRAN_START[granularity]
     result = {"rows": [], "source": None, "note": None}
 
     # 1) Primary: Coinbase.
     try:
-        print("[{}] fetching from Coinbase...".format(label))
-        cb_rows = fetch_coinbase(granularity, START, end)
+        print("[{}] fetching from Coinbase (start {})...".format(label, iso_z(start)))
+        cb_rows = fetch_coinbase(granularity, start, end)
         cb_rows = clean_rows(cb_rows)
         if cb_rows:
             result["rows"] = cb_rows
@@ -395,7 +409,7 @@ def acquire_granularity(granularity, end, keep_cc_daily=None):
     if result["source"] is None:
         try:
             print("[{}] fetching from CryptoCompare (fallback)...".format(label))
-            cc_rows = fetch_cryptocompare(granularity, START, end)
+            cc_rows = fetch_cryptocompare(granularity, start, end)
             cc_rows = clean_rows(cc_rows)
             if cc_rows:
                 result["rows"] = cc_rows
@@ -416,7 +430,7 @@ def acquire_granularity(granularity, end, keep_cc_daily=None):
 def fetch_cc_daily_for_crosscheck(end):
     """Best-effort fetch of CryptoCompare daily candles for the cross-source check."""
     try:
-        rows = fetch_cryptocompare(86400, START, end)
+        rows = fetch_cryptocompare(86400, GRAN_START[86400], end)
         return clean_rows(rows)
     except Exception as exc:  # noqa: BLE001
         print("[crosscheck] CryptoCompare daily fetch failed: {}".format(exc))
@@ -433,7 +447,7 @@ def main():
     end = fetch_ts
 
     print("ETH/USD OHLCV fetch")
-    print("  range : {} -> {}".format(iso_z(START), iso_z(end)))
+    print("  range : {} -> {} (15m from {})".format(iso_z(RANGE_START), iso_z(end), iso_z(START_15M)))
     print("  output: {}".format(DATA_DIR))
     print("")
 
@@ -477,7 +491,8 @@ def main():
     # ---- Build validation.json ------------------------------------------- #
     validation = {
         "fetch_utc": iso_z(fetch_ts),
-        "range_start": iso_z(START),
+        "range_start": iso_z(RANGE_START),
+        "range_start_15m": iso_z(START_15M),
         "range_end": iso_z(end),
         "cross_source_daily_close_check": cross,
         "granularities": {},

@@ -62,6 +62,7 @@ def random_entry_test(
     actual_sharpe,
     n=1000,
     seed=42,
+    eval_end=None,
 ):
     """Random-entry permutation test matched on the strategy's trade structure.
 
@@ -72,6 +73,9 @@ def random_entry_test(
     stop of stop_atr*ATR at the signal bar; there is no trailing stop -- each
     trade exits at the earlier of a stop hit (checked each held bar) or the
     holding duration elapsing at the next bar's open. Costs are identical.
+
+    If ``eval_end`` is given, both the random entry placement and the daily
+    Sharpe are restricted to the window [eval_start, eval_end].
 
     Returns the p-value P(random_sharpe >= actual_sharpe) plus the random
     distribution's mean and 95th percentile.
@@ -114,9 +118,30 @@ def random_entry_test(
             "n_trades": n_tr,
         }
 
-    K = nb - eval_start_idx  # number of eval bars
+    # Last bar index in the window (bounded by eval_end if provided).
+    if eval_end is None:
+        eval_end_idx = last_idx
+    else:
+        eval_end_idx = eval_start_idx
+        for i in range(eval_start_idx, nb):
+            if bars[i].ts <= eval_end:
+                eval_end_idx = i
+            else:
+                break
 
-    # Positions (within the eval array) that are UTC-day closes.
+    if eval_end_idx <= eval_start_idx:
+        return {
+            "p_value": 1.0,
+            "actual_sharpe": actual_sharpe,
+            "random_mean_sharpe": None,
+            "random_p95_sharpe": None,
+            "n": n,
+            "n_trades": n_tr,
+        }
+
+    K = eval_end_idx - eval_start_idx + 1  # number of window bars
+
+    # Positions (within the window array) that are UTC-day closes.
     day_close_ks = []
     for k in range(K):
         bi = eval_start_idx + k
@@ -127,10 +152,10 @@ def random_entry_test(
     n_long = sum(1 for t in trades if t["side"] == "long")
     long_ratio = n_long / n_tr
 
-    # Valid entry fill bars: within eval, with a valid prior-bar ATR and room
-    # for at least a one-bar hold.
+    # Valid entry fill bars: within the window, with a valid prior-bar ATR and
+    # room for at least a one-bar hold.
     first_entry = eval_start_idx
-    last_entry = last_idx - 1
+    last_entry = eval_end_idx - 1
 
     rng = random.Random(seed)
     sharpes = []
@@ -145,8 +170,8 @@ def random_entry_test(
             f = rng.randint(first_entry, last_entry)
             dur = rng.choice(durations)
             end = f + dur
-            if end > last_idx:
-                end = last_idx
+            if end > eval_end_idx:
+                end = eval_end_idx
             overlap = False
             for (pf, pe, _d) in placed:
                 if not (end < pf or f > pe):

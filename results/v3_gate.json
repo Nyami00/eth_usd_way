@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-22T09:20:05.358408+00:00",
+  "generated_at": "2026-07-22T09:31:47.927463+00:00",
   "gate_entry_start": "2025-11-20T00:00:00+00:00",
   "gate_window_start": "2025-11-20T00:00:00+00:00",
   "ytd_window_start": "2026-01-01T00:00:00+00:00",
@@ -104,6 +104,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -119,6 +120,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -134,6 +136,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -149,6 +152,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -164,6 +168,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -179,6 +184,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -194,6 +200,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -209,6 +216,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -224,6 +232,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -239,6 +248,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -254,6 +264,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -269,6 +280,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -284,6 +296,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -299,6 +312,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -314,6 +328,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -329,6 +344,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -344,6 +360,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -359,6 +376,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -374,6 +392,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -389,6 +408,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -404,6 +424,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -419,6 +440,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -434,6 +456,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -449,6 +472,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -464,6 +488,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -479,6 +504,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -494,6 +520,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             }
           ],
@@ -557,6 +584,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -572,6 +600,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -587,6 +616,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -602,6 +632,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -617,6 +648,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -632,6 +664,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -647,6 +680,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -662,6 +696,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -677,6 +712,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -692,6 +728,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -707,6 +744,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             }
           ]
@@ -789,6 +827,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -804,6 +843,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -819,6 +859,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -834,6 +875,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -849,6 +891,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -864,6 +907,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -879,6 +923,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -894,6 +939,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -909,6 +955,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -924,6 +971,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -939,6 +987,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -954,6 +1003,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -969,6 +1019,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -984,6 +1035,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -999,6 +1051,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1014,6 +1067,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1029,6 +1083,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1044,6 +1099,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1059,6 +1115,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1074,6 +1131,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1089,6 +1147,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1104,6 +1163,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1119,6 +1179,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1134,6 +1195,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1149,6 +1211,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1164,6 +1227,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1179,6 +1243,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1194,6 +1259,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1209,6 +1275,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1224,6 +1291,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1239,6 +1307,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1254,6 +1323,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1269,6 +1339,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1284,6 +1355,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1299,6 +1371,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1314,6 +1387,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             }
           ],
@@ -1377,6 +1451,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1392,6 +1467,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1407,6 +1483,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1422,6 +1499,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1437,6 +1515,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1452,6 +1531,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1467,6 +1547,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1482,6 +1563,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1497,6 +1579,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1512,6 +1595,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1527,6 +1611,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1542,6 +1627,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1557,6 +1643,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1572,6 +1659,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1587,6 +1675,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1602,6 +1691,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1617,6 +1707,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1632,6 +1723,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             }
           ]
@@ -1714,6 +1806,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1729,6 +1822,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1744,6 +1838,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1759,6 +1854,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1774,6 +1870,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1789,6 +1886,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1804,6 +1902,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1819,6 +1918,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1834,6 +1934,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1849,6 +1950,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1864,6 +1966,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1879,6 +1982,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1894,6 +1998,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1909,6 +2014,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1924,6 +2030,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1939,6 +2046,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1954,6 +2062,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1969,6 +2078,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1984,6 +2094,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -1999,6 +2110,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2014,6 +2126,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2029,6 +2142,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2044,6 +2158,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2059,6 +2174,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2074,6 +2190,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2089,6 +2206,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2104,6 +2222,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2119,6 +2238,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2134,6 +2254,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             }
           ],
@@ -2197,6 +2318,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2212,6 +2334,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2227,6 +2350,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2242,6 +2366,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2257,6 +2382,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2272,6 +2398,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2287,6 +2414,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2302,6 +2430,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2317,6 +2446,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2332,6 +2462,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2347,6 +2478,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2362,6 +2494,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2377,6 +2510,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             },
             {
@@ -2392,6 +2526,7 @@
               "scaled_out": false,
               "exit_reason": "stop",
               "is_reentry": false,
+              "leverage_capped": false,
               "forced_close": false
             }
           ]
