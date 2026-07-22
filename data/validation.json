@@ -1,0 +1,43 @@
+{
+  "cross_source_daily_close_check": {
+    "days_compared": 0,
+    "max_relative_close_diff": null,
+    "note": "Could not obtain daily candles from both venues for comparison.",
+    "worst_day": null
+  },
+  "fetch_utc": "2026-07-22T08:36:34Z",
+  "granularities": {
+    "15m": {
+      "first_timestamp": "2025-10-01T00:00:00Z",
+      "granularity_seconds": 900,
+      "largest_gap_hours": 6.25,
+      "last_timestamp": "2026-07-22T08:30:00Z",
+      "note": null,
+      "num_gaps": 2,
+      "row_count": 28211,
+      "source": "coinbase"
+    },
+    "1d": {
+      "first_timestamp": "2025-10-01T00:00:00Z",
+      "granularity_seconds": 86400,
+      "largest_gap_hours": 0.0,
+      "last_timestamp": "2026-07-22T00:00:00Z",
+      "note": null,
+      "num_gaps": 0,
+      "row_count": 295,
+      "source": "coinbase"
+    },
+    "1h": {
+      "first_timestamp": "2025-10-01T00:00:00Z",
+      "granularity_seconds": 3600,
+      "largest_gap_hours": 5.0,
+      "last_timestamp": "2026-07-22T08:00:00Z",
+      "note": null,
+      "num_gaps": 2,
+      "row_count": 7055,
+      "source": "coinbase"
+    }
+  },
+  "range_end": "2026-07-22T08:36:34Z",
+  "range_start": "2025-10-01T00:00:00Z"
+}
