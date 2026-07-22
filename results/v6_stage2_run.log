@@ -1,0 +1,56 @@
+bars=57450 bars_eng=50394 design[1439..50393] days=2040
+2000/17280 (11.6%) elapsed=38s eta=292s
+4000/17280 (23.1%) elapsed=79s eta=263s
+6000/17280 (34.7%) elapsed=122s eta=229s
+8000/17280 (46.3%) elapsed=165s eta=192s
+10000/17280 (57.9%) elapsed=205s eta=149s
+12000/17280 (69.4%) elapsed=245s eta=108s
+14000/17280 (81.0%) elapsed=289s eta=68s
+16000/17280 (92.6%) elapsed=333s eta=27s
+computed 17280 configs in 360.7s
+
+=== v6 Stage 2 ===
+configs: 17280 | qualifying (trades>=100, Sharpe>=1.0, +yrs>=4): 36
+qualifying by family: {'long': 28, 'both': 8}
+qualifying with ema_slope_filter=ON: 8 / 36
+
+Top-15 candidates by plateau score:
+fam  kc     ms   rw  htf    stop    trail    tstop   slope  |   trd  Sharpe   maxDD  +yr  plateau
+long kc1.75 ms6  rw5 htf100 stop2.0 trail4.0 tstop0  slope0 |   141   1.051   31.09    5    0.943
+long kc1.75 ms8  rw5 htf100 stop1.5 trail4.0 tstop0  slope0 |   117   1.091   29.96    5    0.924
+long kc1.75 ms6  rw3 htf30  stop2.0 trail4.0 tstop12 slope0 |   137   1.043   29.55    4    0.913
+long kc1.75 ms6  rw5 htf100 stop2.0 trail5.0 tstop0  slope0 |   133   1.071   29.24    5    0.910
+long kc1.75 ms6  rw3 htf30  stop2.0 trail4.0 tstop0  slope0 |   135   1.041   29.22    4    0.909
+long kc1.75 ms6  rw5 htf50  stop2.0 trail4.0 tstop12 slope0 |   143   1.007   30.27    5    0.907
+long kc1.75 ms6  rw5 htf50  stop2.0 trail5.0 tstop12 slope0 |   135   1.072   31.75    5    0.891
+long kc1.75 ms6  rw3 htf100 stop2.0 trail4.0 tstop0  slope0 |   134   1.015   31.52    5    0.888
+long kc1.75 ms8  rw5 htf50  stop1.5 trail4.0 tstop0  slope0 |   115   1.034   29.95    5    0.881
+long kc1.75 ms6  rw5 htf100 stop2.0 trail5.0 tstop12 slope0 |   135   1.042   33.59    4    0.879
+long kc1.5  ms3  rw3 htf30  stop2.0 trail4.0 tstop12 slope1 |   114   1.020   23.41    4    0.877
+long kc1.75 ms6  rw5 htf30  stop2.0 trail5.0 tstop12 slope0 |   137   1.055   31.50    4    0.869
+long kc1.75 ms8  rw5 htf100 stop1.5 trail5.0 tstop0  slope0 |   114   1.013   32.36    5    0.866
+long kc1.75 ms6  rw5 htf50  stop2.0 trail5.0 tstop0  slope0 |   133   1.008   32.14    4    0.865
+long kc1.75 ms6  rw5 htf30  stop2.0 trail5.0 tstop0  slope0 |   135   1.028   31.42    5    0.857
+
+Significance (top-6 by plateau, design window):
+  long kc1.75 ms6 rw5 htf100 stop2.0 trail4.0 tstop0 slope0 | Sharpe=1.051 trades=141 boot_p=0.0041 rand_p=0.0020
+      per-year net%%: 2020=108.3, 2021=53.1, 2022=8.0, 2023=12.8, 2024=3.4, 2025=-12.8
+      bear-year detail: 2022=8.0 2025=-12.8
+  long kc1.75 ms8 rw5 htf100 stop1.5 trail4.0 tstop0 slope0 | Sharpe=1.091 trades=117 boot_p=0.0010 rand_p=0.0020
+      per-year net%%: 2020=143.2, 2021=26.3, 2022=6.5, 2023=14.9, 2024=15.2, 2025=-10.6
+      bear-year detail: 2022=6.5 2025=-10.6
+  long kc1.75 ms6 rw3 htf30 stop2.0 trail4.0 tstop12 slope0 | Sharpe=1.043 trades=137 boot_p=0.0047 rand_p=0.0030
+      per-year net%%: 2020=89.8, 2021=54.6, 2022=22.5, 2023=-3.9, 2024=4.6, 2025=-8.1
+      bear-year detail: 2022=22.5 2025=-8.1
+  long kc1.75 ms6 rw5 htf100 stop2.0 trail5.0 tstop0 slope0 | Sharpe=1.071 trades=133 boot_p=0.0021 rand_p=0.0030
+      per-year net%%: 2020=138.5, 2021=42.0, 2022=11.0, 2023=2.7, 2024=3.2, 2025=-6.0
+      bear-year detail: 2022=11.0 2025=-6.0
+  long kc1.75 ms6 rw3 htf30 stop2.0 trail4.0 tstop0 slope0 | Sharpe=1.041 trades=135 boot_p=0.0043 rand_p=0.0040
+      per-year net%%: 2020=109.0, 2021=47.9, 2022=22.5, 2023=2.4, 2024=-0.8, 2025=-10.2
+      bear-year detail: 2022=22.5 2025=-10.2
+  long kc1.75 ms6 rw5 htf50 stop2.0 trail4.0 tstop12 slope0 | Sharpe=1.007 trades=143 boot_p=0.0058 rand_p=0.0060
+      per-year net%%: 2020=72.9, 2021=60.2, 2022=16.4, 2023=3.1, 2024=4.8, 2025=-8.1
+      bear-year detail: 2022=16.4 2025=-8.1
+
+Saved /home/user/eth_usd_way/results/v6_stage2.json
+Total runtime: 374.5s
