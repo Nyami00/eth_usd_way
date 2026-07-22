@@ -1,0 +1,144 @@
+{
+  "generated_at": "2026-07-22T12:33:37.354258+00:00",
+  "design_window": [
+    "2020-03-01T00:00:00+00:00",
+    "2025-09-30T23:59:59+00:00"
+  ],
+  "gate_entry_start": "2025-11-20T00:00:00+00:00",
+  "ytd_window": [
+    "2026-01-01T00:00:00+00:00",
+    "2026-07-22T09:00:00+00:00"
+  ],
+  "pass_criteria": {
+    "ytd_sharpe>=": 1.5,
+    "ytd_maxdd<": 25.0,
+    "ytd_trades>=": 10
+  },
+  "candidates_tested": [
+    {
+      "name": "C1",
+      "config": {
+        "name": "C1",
+        "family": "long",
+        "kc_mult": 1.75,
+        "min_squeeze_bars": 6,
+        "release_window": 5,
+        "htf_ema_days": 100,
+        "stop_atr": 2.0,
+        "trail_atr": 4.0,
+        "time_stop_bars": 0,
+        "ema_slope_filter": false
+      },
+      "ytd_metrics": {
+        "trades": 5,
+        "net_return_pct": -13.687798987938471,
+        "sharpe": -2.9882650127524557,
+        "max_dd_pct": 13.687798987938471,
+        "win_rate": 0.0,
+        "avg_r": -0.9657159075581294,
+        "profit_factor": 0.0,
+        "exposure": 0.00865444055223573,
+        "cagr_pct": -23.316676706349305,
+        "avg_bars_held": 8.4,
+        "by_side": {
+          "long": 5,
+          "short": 0
+        }
+      },
+      "monthly_net_return_pct": {
+        "2026-01": -3.4503369654077742,
+        "2026-02": 0.0,
+        "2026-03": 0.0,
+        "2026-04": -4.294626263114543,
+        "2026-05": -6.591777981899172,
+        "2026-06": 0.0,
+        "2026-07": 0.0
+      },
+      "passed": false
+    },
+    {
+      "name": "C2",
+      "config": {
+        "name": "C2",
+        "family": "long",
+        "kc_mult": 1.75,
+        "min_squeeze_bars": 8,
+        "release_window": 5,
+        "htf_ema_days": 100,
+        "stop_atr": 1.5,
+        "trail_atr": 4.0,
+        "time_stop_bars": 0,
+        "ema_slope_filter": false
+      },
+      "ytd_metrics": {
+        "trades": 5,
+        "net_return_pct": -11.339038809745572,
+        "sharpe": -2.2386590065356757,
+        "max_dd_pct": 11.339038809745572,
+        "win_rate": 20.0,
+        "avg_r": -0.7861854898968005,
+        "profit_factor": 0.14021434720186465,
+        "exposure": 0.0063878013599835155,
+        "cagr_pct": -19.511999796144963,
+        "avg_bars_held": 6.2,
+        "by_side": {
+          "long": 5,
+          "short": 0
+        }
+      },
+      "monthly_net_return_pct": {
+        "2026-01": -3.581456179484721,
+        "2026-02": 0.0,
+        "2026-03": 0.0,
+        "2026-04": -1.3155820950921493,
+        "2026-05": -6.819876156268611,
+        "2026-06": 0.0,
+        "2026-07": 0.0
+      },
+      "passed": false
+    },
+    {
+      "name": "C3",
+      "config": {
+        "name": "C3",
+        "family": "both",
+        "kc_mult": 1.5,
+        "min_squeeze_bars": 4,
+        "release_window": 3,
+        "htf_ema_days": 30,
+        "stop_atr": 2.0,
+        "trail_atr": 4.0,
+        "time_stop_bars": 12,
+        "ema_slope_filter": true
+      },
+      "ytd_metrics": {
+        "trades": 0,
+        "net_return_pct": 0.0,
+        "sharpe": 0.0,
+        "max_dd_pct": 0.0,
+        "win_rate": null,
+        "avg_r": null,
+        "profit_factor": null,
+        "exposure": 0.0,
+        "cagr_pct": 0.0,
+        "avg_bars_held": null,
+        "by_side": {
+          "long": 0,
+          "short": 0
+        }
+      },
+      "monthly_net_return_pct": {
+        "2026-01": 0.0,
+        "2026-02": 0.0,
+        "2026-03": 0.0,
+        "2026-04": 0.0,
+        "2026-05": 0.0,
+        "2026-06": 0.0,
+        "2026-07": 0.0
+      },
+      "passed": false
+    }
+  ],
+  "first_pass": null,
+  "mc_suite": null
+}
