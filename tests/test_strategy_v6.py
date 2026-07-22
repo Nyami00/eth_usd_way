@@ -83,5 +83,26 @@ class TestConfirmBars(unittest.TestCase):
         self.assertTrue(all(s is None for s in sig))  # setup consumed, no signal
 
 
+class TestEmaSlopeFilter(unittest.TestCase):
+    def _run(self, slope_val):
+        # confirm_bars=0 long breakout at bar 4; slope filter gates it.
+        closes = [95, 95, 95, 95, 101, 99, 95, 95]
+        bars = make(closes)
+        c = cache(8, 100, 90, BW)
+        c["htf_ema_slope"] = [slope_val] * 8
+        p = base_params(0)
+        p["ema_slope_filter"] = True
+        return strat.generate_signals(bars, p, ind_data=c)[0]
+
+    def test_slope_up_allows_long(self):
+        self.assertEqual(self._run(0.5)[4], "long")  # slope>0 permits long
+
+    def test_slope_down_blocks_long(self):
+        self.assertTrue(all(s is None for s in self._run(-0.5)))  # slope<0 blocks long
+
+    def test_slope_none_blocks(self):
+        self.assertTrue(all(s is None for s in self._run(None)))
+
+
 if __name__ == "__main__":
     unittest.main()

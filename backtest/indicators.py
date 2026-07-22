@@ -216,6 +216,33 @@ def daily_ema_ffill(bars, n):
     return out
 
 
+def daily_ema_slope_ffill(bars, n):
+    """Per-bar slope of the daily (UTC) EMA(n): dema[D-1] - dema[D-2].
+
+    Same no-look-ahead convention as ``daily_ema_ffill`` -- a bar on day D uses
+    only completed days D-1 and D-2. ``None`` until both are available.
+    """
+    dates = []
+    daily_close = []
+    cur = None
+    for b in bars:
+        d = b.ts.date()
+        if cur is None or d != cur:
+            dates.append(d)
+            daily_close.append(b.close)
+            cur = d
+        else:
+            daily_close[-1] = b.close
+    dema = ema(daily_close, n)
+    pos = {d: i for i, d in enumerate(dates)}
+    out = [None] * len(bars)
+    for k, b in enumerate(bars):
+        p = pos[b.ts.date()]
+        if p - 2 >= 0 and dema[p - 1] is not None and dema[p - 2] is not None:
+            out[k] = dema[p - 1] - dema[p - 2]
+    return out
+
+
 def bw_percentile(bw, lookback):
     """Percentile rank of BandWidth within the trailing ``lookback`` bars.
 

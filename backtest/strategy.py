@@ -131,6 +131,10 @@ def generate_signals(bars, params, ind_data=None):
     # (recomputed at that bar); on confirmation emit there (engine fills at the
     # bar after). The setup is consumed on the breakout bar either way.
     confirm_bars = int(params.get("confirm_bars", 0))
+    # ema_slope_filter: require the daily EMA to slope in the trade direction at
+    # signal time (long: EMA[D-1] > EMA[D-2]; short: EMA[D-1] < EMA[D-2]).
+    ema_slope_filter = bool(params.get("ema_slope_filter"))
+    htf_slope = ind_data.get("htf_ema_slope")
 
     prev_squeeze = False
     run_len = 0
@@ -210,10 +214,21 @@ def generate_signals(bars, params, ind_data=None):
                     vol_ok = sv is not None and bars[i].volume >= vol_mult * sv
                 else:
                     vol_ok = True
+                # daily-EMA slope filter
+                if ema_slope_filter:
+                    sl = htf_slope[i] if htf_slope is not None else None
+                    slope_ok_long = sl is not None and sl > 0
+                    slope_ok_short = sl is not None and sl < 0
+                else:
+                    slope_ok_long = slope_ok_short = True
 
-                long_break = allow_long and c > up and trend_ok_long and htf_ok_long and mom_ok_long and vol_ok
+                long_break = (
+                    allow_long and c > up and trend_ok_long and htf_ok_long
+                    and mom_ok_long and vol_ok and slope_ok_long
+                )
                 short_break = (
-                    allow_short and c < lo and trend_ok_short and htf_ok_short and mom_ok_short and vol_ok
+                    allow_short and c < lo and trend_ok_short and htf_ok_short
+                    and mom_ok_short and vol_ok and slope_ok_short
                 )
                 if long_break:
                     setup["consumed"] = True
