@@ -131,6 +131,10 @@ def generate_signals(bars, params, ind_data=None):
     run_len = 0
     # active setup: dict with release_bar and consumed flag, or None
     setup = None
+    # episode tracking (v4b): the most recent qualifying squeeze-release bar
+    # as of bar i (a new qualifying release replaces the episode).
+    episode_release = [None] * n
+    current_release = None
 
     for i in range(n):
         sq = _squeeze_state(i, ind_data, params)
@@ -142,7 +146,10 @@ def generate_signals(bars, params, ind_data=None):
             # long enough. bar i is the first (release) bar.
             if prev_squeeze and run_len >= min_squeeze:
                 setup = {"release_bar": i, "consumed": False}
+                current_release = i  # new episode starts here
             run_len = 0
+
+        episode_release[i] = current_release
 
         # expire the setup once the release window has fully elapsed
         if setup is not None and (i - setup["release_bar"]) >= release_window:
@@ -195,5 +202,22 @@ def generate_signals(bars, params, ind_data=None):
 
         signals[i] = sig
         prev_squeeze = sq
+
+    # Pull-back short re-entry trigger (v4b): close crosses down through BBmid
+    # while the HTF filter still permits shorts (close < daily EMA50).
+    closes = [b.close for b in bars]
+    bb_mid = ind_data["bb_mid"]
+    pullback_short = [False] * n
+    for i in range(1, n):
+        m = bb_mid[i]
+        mp = bb_mid[i - 1]
+        if m is None or mp is None:
+            continue
+        he = htf_ema[i] if htf_ema is not None else None
+        if closes[i] < m and closes[i - 1] >= mp and he is not None and closes[i] < he:
+            pullback_short[i] = True
+
+    ind_data["episode_release"] = episode_release
+    ind_data["pullback_short"] = pullback_short
 
     return signals, ind_data
