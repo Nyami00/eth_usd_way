@@ -40,3 +40,40 @@ def load_bars(path):
                 )
             )
     return bars
+
+
+def resample(bars, k):
+    """Aggregate ``k`` consecutive bars into one.
+
+    open = first, high = max, low = min, close = last, volume = sum,
+    timestamp = first bar's timestamp. Trailing partial groups are dropped.
+
+    Groups are aligned so each starts at a UTC hour that is a multiple of ``k``
+    (e.g. even hours for k=2). The start hour is re-checked at every group
+    boundary, so a bar that would break alignment (e.g. an orphan bar left by a
+    data gap) is skipped rather than merged across the gap.
+    """
+    if k <= 1:
+        return list(bars)
+    out = []
+    n = len(bars)
+    i = 0
+    while i < n:
+        if bars[i].ts.hour % k != 0:
+            i += 1  # skip until aligned to an even (mult-of-k) start hour
+            continue
+        if i + k > n:
+            break  # trailing partial group
+        group = bars[i : i + k]
+        out.append(
+            Bar(
+                ts=group[0].ts,
+                open=group[0].open,
+                high=max(b.high for b in group),
+                low=min(b.low for b in group),
+                close=group[-1].close,
+                volume=sum(b.volume for b in group),
+            )
+        )
+        i += k
+    return out

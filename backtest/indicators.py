@@ -132,6 +132,90 @@ def bandwidth(upper, lower, mid):
     return out
 
 
+def rolling_max(values, n):
+    """Highest value over the trailing ``n`` bars (inclusive). None during warm-up."""
+    out = [None] * len(values)
+    if n <= 0:
+        return out
+    for i in range(len(values)):
+        if i >= n - 1:
+            window = values[i - n + 1 : i + 1]
+            if any(w is None for w in window):
+                continue
+            out[i] = max(window)
+    return out
+
+
+def rolling_min(values, n):
+    """Lowest value over the trailing ``n`` bars (inclusive). None during warm-up."""
+    out = [None] * len(values)
+    if n <= 0:
+        return out
+    for i in range(len(values)):
+        if i >= n - 1:
+            window = values[i - n + 1 : i + 1]
+            if any(w is None for w in window):
+                continue
+            out[i] = min(window)
+    return out
+
+
+def linreg_endpoint(values, n):
+    """Value of the least-squares fitted line AT the last bar of each n-window.
+
+    For each index t (t >= n-1) fit y = a + b*x on x=0..n-1 over
+    values[t-n+1..t] and return the fitted value at x = n-1 (the window's
+    endpoint). ``None`` where the window is not full or contains ``None``.
+    """
+    out = [None] * len(values)
+    if n <= 0:
+        return out
+    mean_x = (n - 1) / 2.0
+    sxx = sum((x - mean_x) ** 2 for x in range(n))
+    for i in range(len(values)):
+        if i < n - 1:
+            continue
+        window = values[i - n + 1 : i + 1]
+        if any(w is None for w in window):
+            continue
+        mean_y = sum(window) / n
+        sxy = sum((j - mean_x) * (window[j] - mean_y) for j in range(n))
+        b = sxy / sxx if sxx != 0 else 0.0
+        a = mean_y - b * mean_x
+        out[i] = a + b * (n - 1)
+    return out
+
+
+def daily_ema_ffill(bars, n):
+    """Daily (UTC) EMA(n) of closes, forward-filled onto the intraday bars.
+
+    The value used at bar ``t`` comes from the EMA computed through the last UTC
+    day that fully closed *before* bar ``t``'s own day (i.e. day D-1 for a bar on
+    day D) -- so there is no look-ahead: a bar never sees an EMA value that
+    incorporates any close from its own (still-open) day. ``None`` until the
+    prior completed day's EMA is available.
+    """
+    dates = []
+    daily_close = []
+    cur = None
+    for b in bars:
+        d = b.ts.date()
+        if cur is None or d != cur:
+            dates.append(d)
+            daily_close.append(b.close)
+            cur = d
+        else:
+            daily_close[-1] = b.close
+    dema = ema(daily_close, n)
+    pos = {d: i for i, d in enumerate(dates)}
+    out = [None] * len(bars)
+    for k, b in enumerate(bars):
+        p = pos[b.ts.date()]
+        if p - 1 >= 0:
+            out[k] = dema[p - 1]
+    return out
+
+
 def bw_percentile(bw, lookback):
     """Percentile rank of BandWidth within the trailing ``lookback`` bars.
 

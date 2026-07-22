@@ -49,6 +49,36 @@ def compute_indicators(bars, params):
     trend_ema = params.get("trend_ema", 0)
     out["ema_trend"] = ind.ema(closes, trend_ema) if trend_ema and trend_ema > 0 else None
 
+    # --- v2 filters (computed only when enabled) ---
+    # F1: higher-timeframe daily-EMA trend filter (always on in v2).
+    if params.get("htf_trend"):
+        out["htf_ema"] = ind.daily_ema_ffill(bars, params.get("htf_ema_n", 50))
+    else:
+        out["htf_ema"] = None
+
+    # F2: TTM momentum oscillator = linreg endpoint of (close - midline),
+    # midline = ((HH_m + LL_m)/2 + EMA_m)/2 over an m-bar window.
+    if params.get("momentum_filter"):
+        m = params.get("mom_n", 20)
+        hh = ind.rolling_max(highs, m)
+        ll = ind.rolling_min(lows, m)
+        ema_m = ind.ema(closes, m)
+        delta = [None] * len(closes)
+        for i in range(len(closes)):
+            if hh[i] is not None and ll[i] is not None and ema_m[i] is not None:
+                midline = ((hh[i] + ll[i]) / 2.0 + ema_m[i]) / 2.0
+                delta[i] = closes[i] - midline
+        out["osc"] = ind.linreg_endpoint(delta, m)
+    else:
+        out["osc"] = None
+
+    # F3: volume confirmation vs SMA(volume, 20).
+    if params.get("volume_filter"):
+        volumes = [b.volume for b in bars]
+        out["sma_vol"] = ind.sma(volumes, params.get("vol_sma_n", 20))
+    else:
+        out["sma_vol"] = None
+
     # ATR used for stops / sizing (atr_n, typically 14).
     out["atr_stop"] = ind.atr(highs, lows, closes, params["atr_n"])
     return out
@@ -89,6 +119,14 @@ def generate_signals(bars, params, ind_data=None):
     bb_up = ind_data["bb_up"]
     bb_lo = ind_data["bb_lo"]
 
+    htf_trend = bool(params.get("htf_trend"))
+    htf_ema = ind_data.get("htf_ema")
+    momentum_filter = bool(params.get("momentum_filter"))
+    osc = ind_data.get("osc")
+    volume_filter = bool(params.get("volume_filter"))
+    sma_vol = ind_data.get("sma_vol")
+    vol_mult = params.get("vol_mult", 1.3)
+
     prev_squeeze = False
     run_len = 0
     # active setup: dict with release_bar and consumed flag, or None
@@ -116,6 +154,7 @@ def generate_signals(bars, params, ind_data=None):
             up = bb_up[i]
             lo = bb_lo[i]
             if up is not None and lo is not None:
+                # v1 same-timeframe EMA trend filter (disabled when trend_ema==0)
                 trend_ok_long = (
                     trend_ema == 0
                     or (ema_trend is not None and ema_trend[i] is not None and c > ema_trend[i])
@@ -124,10 +163,33 @@ def generate_signals(bars, params, ind_data=None):
                     trend_ema == 0
                     or (ema_trend is not None and ema_trend[i] is not None and c < ema_trend[i])
                 )
-                if allow_long and c > up and trend_ok_long:
+                # F1: higher-timeframe daily-EMA trend filter
+                if htf_trend:
+                    he = htf_ema[i] if htf_ema is not None else None
+                    htf_ok_long = he is not None and c > he
+                    htf_ok_short = he is not None and c < he
+                else:
+                    htf_ok_long = htf_ok_short = True
+                # F2: momentum oscillator
+                if momentum_filter:
+                    o = osc[i] if osc is not None else None
+                    mom_ok_long = o is not None and o > 0
+                    mom_ok_short = o is not None and o < 0
+                else:
+                    mom_ok_long = mom_ok_short = True
+                # F3: volume confirmation on the breakout bar
+                if volume_filter:
+                    sv = sma_vol[i] if sma_vol is not None else None
+                    vol_ok = sv is not None and bars[i].volume >= vol_mult * sv
+                else:
+                    vol_ok = True
+
+                if allow_long and c > up and trend_ok_long and htf_ok_long and mom_ok_long and vol_ok:
                     sig = "long"
                     setup["consumed"] = True
-                elif allow_short and c < lo and trend_ok_short:
+                elif (
+                    allow_short and c < lo and trend_ok_short and htf_ok_short and mom_ok_short and vol_ok
+                ):
                     sig = "short"
                     setup["consumed"] = True
 
